@@ -44,6 +44,15 @@
 #
 class scopingskill {
 
+#$name = 'puppet'
+#notify { "Hello ${name}" : }
+
+#$name = 'puppetlabs'
+#notify { "Hello ${name}" : }
+
+$name = 'puppet'
+notify { "The OS Family is $::osfamily" : }
+notify { "Hello ${::scopingskill::name}" : }
 
 
 }
