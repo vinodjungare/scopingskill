@@ -42,7 +42,7 @@
 #
 # Copyright 2016 Your name here, unless otherwise noted.
 #
-class scopingskill  ( $firstname = $scopingskill::params::firstname ) inherits scoping::params {
+class scopingskill  ( $firstname = $scopingskill::params::firstname ) inherits scopingskill::params {
 
 #$name = 'puppet'
 #notify { "Hello ${name}" : }
@@ -50,9 +50,9 @@ class scopingskill  ( $firstname = $scopingskill::params::firstname ) inherits s
 #$name = 'puppetlabs'
 #notify { "Hello ${name}" : }
 
-$name = 'puppet'
-notify { "The OS Family is $::osfamily" : }
-notify { "Hello ${::scopingskill::name}" : }
+#$name = 'puppet'
+#notify { "The OS Family is $::osfamily" : }
+#notify { "Hello ${::scopingskill::name}" : }
 
  # Taking value from top scope.
   notify { "Value of myname from top scope : ${myname} " : }
