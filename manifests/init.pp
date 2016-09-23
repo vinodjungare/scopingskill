@@ -42,7 +42,7 @@
 #
 # Copyright 2016 Your name here, unless otherwise noted.
 #
-class scopingskill {
+class scopingskill  ( $firstname = $scoping_exercise::params::firstname ) inherits scoping_exercise::params {
 
 #$name = 'puppet'
 #notify { "Hello ${name}" : }
@@ -54,5 +54,19 @@ $name = 'puppet'
 notify { "The OS Family is $::osfamily" : }
 notify { "Hello ${::scopingskill::name}" : }
 
+ # Taking value from top scope.
+  notify { "Value of myname from top scope : ${myname} " : }
+
+  # Reassigning value in local scope taking value from params class.
+  $myname = $firstname
+
+  # Next access of "myname" will give local scope value.
+  notify { " New value for myname - ${myname} " : }
+
+  # Accessing "myname" from top scope using qualified name
+  notify { "Hello from top scope - ${::myname}" : }
+
+  # Accessing a node scope variable "mylastname"
+  notify { "Hello from node scope : ${mylastname}" : }
 
 }
