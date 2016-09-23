@@ -42,7 +42,7 @@
 #
 # Copyright 2016 Your name here, unless otherwise noted.
 #
-class scopingskill  ( $firstname = $scoping_exercise::params::firstname ) inherits scoping_exercise::params {
+class scopingskill  ( $firstname = $scopingskill::params::firstname ) inherits scoping::params {
 
 #$name = 'puppet'
 #notify { "Hello ${name}" : }
