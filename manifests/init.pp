@@ -44,15 +44,6 @@
 #
 class scopingskill  ( $firstname = $scopingskill::params::firstname ) inherits scopingskill::params {
 
-#$name = 'puppet'
-#notify { "Hello ${name}" : }
-
-#$name = 'puppetlabs'
-#notify { "Hello ${name}" : }
-
-#$name = 'puppet'
-#notify { "The OS Family is $::osfamily" : }
-#notify { "Hello ${::scopingskill::name}" : }
 
  # Taking value from top scope.
   notify { "Value of myname from top scope : ${myname} " : }
@@ -68,5 +59,28 @@ class scopingskill  ( $firstname = $scopingskill::params::firstname ) inherits s
 
   # Accessing a node scope variable "mylastname"
   notify { "Hello from node scope : ${mylastname}" : }
+
+define monitor_diskspace ($logdirpath = '/tmp/diskspacelog/' , $minute = '00') {
+
+  file { 'dir_store' :
+    path => $logdirpath ,
+    ensure => directory,
+    owner => 'root',
+    group => 'root',
+}
+
+  file { 'disk_space_script' :
+    path => '/tmp/monitor_disk_space.sh',
+    ensure => file,
+    source => 'puppet:///modules/scoping_exercise/monitor_disk_space.sh',
+    mode => '0755',
+    owner => 'shyam',
+    group => 'root',
+}
+
+   cron { 'hourly_diskspacelog' :
+    command => '/tmp/monitor_disk_space.sh',
+    minute => $minute,
+}
 
 }
